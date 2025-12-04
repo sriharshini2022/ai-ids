@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ai-ids:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+
+  # Optional: Add a database service
+  # database:
+  #   image: postgres:13
+  #   environment:
+  #     POSTGRES_DB: ids_db
+  #     POSTGRES_USER: ids_user
+  #     POSTGRES_PASSWORD: secure_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+# volumes:
+#   postgres_data:
